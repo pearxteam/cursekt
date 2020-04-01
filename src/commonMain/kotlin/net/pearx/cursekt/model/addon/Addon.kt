@@ -10,6 +10,8 @@ package net.pearx.cursekt.model.addon
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.pearx.cursekt.model.CategorySection
+import net.pearx.cursekt.util.Date
+import net.pearx.cursekt.util.DateSerializer
 
 @Serializable
 data class Addon(
@@ -36,9 +38,12 @@ data class Addon(
     val gameSlug: String,
     val gameName: String,
     val portalName: String,
-    val dateModified: String, // todo datetime
-    val dateCreated: String, // todo datetime
-    val dateReleased: String, // todo datetime
+    @Serializable(with = DateSerializer::class)
+    val dateModified: Date,
+    @Serializable(with = DateSerializer::class)
+    val dateCreated: Date,
+    @Serializable(with = DateSerializer::class)
+    val dateReleased: Date,
     val isAvailable: Boolean,
     @SerialName("isExperiemental")
     val isExperimental: Boolean

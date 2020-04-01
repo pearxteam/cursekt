@@ -9,13 +9,16 @@ package net.pearx.cursekt.model.addon
 
 import kotlinx.serialization.Serializable
 import net.pearx.cursekt.model.PackageType
+import net.pearx.cursekt.util.Date
+import net.pearx.cursekt.util.DateSerializer
 
 @Serializable
 data class AddonFile(
     val id: Int,
     val displayName: String,
     val fileName: String,
-    val fileDate: String, // todo datetime
+    @Serializable(with = DateSerializer::class)
+    val fileDate: Date,
     val fileLength: Long,
     val releaseType: ProjectFileReleaseType,
     val fileStatus: ProjectFileStatus,
@@ -43,7 +46,8 @@ data class AddonFile(
     val fileTypeId: Int? = null,
     val exposeAsAlternative: Boolean? = null,
     val packageFingerprintId: Int? = null,
-    val gameVersionDateReleased: String?, // todo
+    @Serializable(with = DateSerializer::class)
+    val gameVersionDateReleased: Date?,
     val gameVersionMappingId: Int? = null,
     val gameVersionId: Int? = null,
     val gameId: Int? = null,

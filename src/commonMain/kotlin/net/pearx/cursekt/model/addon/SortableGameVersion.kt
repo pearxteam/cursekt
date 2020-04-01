@@ -8,11 +8,14 @@
 package net.pearx.cursekt.model.addon
 
 import kotlinx.serialization.Serializable
+import net.pearx.cursekt.util.Date
+import net.pearx.cursekt.util.DateSerializer
 
 @Serializable
 data class SortableGameVersion(
     val gameVersionPadded: String,
     val gameVersion: String,
-    val gameVersionReleaseDate: String, // todo datetime
+    @Serializable(with = DateSerializer::class)
+    val gameVersionReleaseDate: Date,
     val gameVersionName: String
 )
