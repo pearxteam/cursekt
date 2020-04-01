@@ -18,6 +18,7 @@ import io.ktor.client.request.post
 import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
+import kotlinx.serialization.json.Json
 import net.pearx.cursekt.model.RepositoryMatch
 import net.pearx.cursekt.model.addon.Addon
 import net.pearx.cursekt.model.addon.AddonFile
@@ -25,6 +26,8 @@ import net.pearx.cursekt.model.addon.AddonSortMethod
 import net.pearx.cursekt.model.addon.FeaturedAddonType
 import net.pearx.cursekt.model.game.Game
 import net.pearx.cursekt.model.request.FeaturedAddonsRequest
+import net.pearx.cursekt.util.Date
+import net.pearx.cursekt.util.DateSerializer
 
 class CurseClient {
     private val http = HttpClient {
@@ -48,8 +51,8 @@ class CurseClient {
         return http.get("api/v2/game/$gameId")
     }
 
-    suspend fun getGameDatabaseTimestamp(): String { // todo datetime
-        return http.get("api/v2/game/timestamp")
+    suspend fun getGameDatabaseTimestamp(): Date {
+        return Json.parse(DateSerializer, http.get("api/v2/game/timestamp"))
     }
 
     suspend fun getAddon(projectId: Int): Addon {
@@ -83,7 +86,7 @@ class CurseClient {
     suspend fun getAddonFiles(vararg keys: Int): Map<Int, List<AddonFile>> = getAddonFiles(keys.toList())
 
     suspend fun getAddonFileDownloadUrl(projectId: Int, fileId: Int): String {
-        return http.get("api/v2/addon/$projectId/")
+        return http.get("api/v2/addon/$projectId/$fileId/download-url")
     }
 
     suspend fun getAddonFile(projectId: Int, fileId: Int): AddonFile {

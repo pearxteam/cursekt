@@ -1,6 +1,5 @@
 import com.github.breadmoirai.githubreleaseplugin.GithubReleaseExtension
 import net.pearx.multigradle.util.MultiGradleExtension
-import net.pearx.multigradle.util.invoke
 import net.pearx.multigradle.util.kotlinMpp
 
 val projectChangelog: String by project
