@@ -5,10 +5,13 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.pearx.cursekt.model.addon
+package net.pearx.cursekt.model.addon.file
 
 import kotlinx.serialization.Serializable
-import net.pearx.cursekt.model.PackageType
+import net.pearx.cursekt.model.addon.AddonPackageType
+import net.pearx.cursekt.model.addon.AddonRestrictFileAccess
+import net.pearx.cursekt.model.addon.AddonStatus
+import net.pearx.cursekt.model.addon.SortableGameVersion
 import net.pearx.cursekt.util.Date
 import net.pearx.cursekt.util.DateSerializer
 
@@ -20,8 +23,8 @@ data class AddonFile(
     @Serializable(with = DateSerializer::class)
     val fileDate: Date,
     val fileLength: Long,
-    val releaseType: ProjectFileReleaseType,
-    val fileStatus: ProjectFileStatus,
+    val releaseType: AddonFileReleaseType,
+    val fileStatus: AddonFileStatus,
     val downloadUrl: String,
     val isAlternate: Boolean,
     val alternateFileId: Int,
@@ -35,9 +38,9 @@ data class AddonFile(
     val changelog: String? = null,
     val hasInstallScript: Boolean,
     val isCompatibleWithClient: Boolean? = null,
-    val categorySectionPackageType: PackageType? = null,
-    val restrictProjectFileAccess: ProjectRestrictProjectFileAccess? = null,
-    val projectStatus: ProjectStatus? = null,
+    val categorySectionPackageType: AddonPackageType? = null,
+    val restrictProjectFileAccess: AddonRestrictFileAccess? = null,
+    val projectStatus: AddonStatus? = null,
     val renderCacheId: Int? = null,
     val fileLegacyMappingId: Int? = null,
     val projectId: Int? = null,

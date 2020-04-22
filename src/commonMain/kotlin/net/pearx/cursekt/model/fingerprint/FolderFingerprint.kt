@@ -1,12 +1,11 @@
-package net.pearx.cursekt.model.addon
+package net.pearx.cursekt.model.fingerprint
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AddonFileModule(
+data class FolderFingerprint(
     @SerialName("foldername")
     val folderName: String,
-    val fingerprint: Long,
-    val type: ProjectFileFingerprintType? = null
+    val fingerprints: List<Long>
 )

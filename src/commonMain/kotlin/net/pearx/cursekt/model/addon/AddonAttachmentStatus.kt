@@ -3,13 +3,13 @@ package net.pearx.cursekt.model.addon
 import kotlinx.serialization.Serializable
 import net.pearx.cursekt.util.EnumIntSerializer
 
-@Serializable(with = AttachmentStatus.Ser::class)
-enum class AttachmentStatus {
+@Serializable(with = AddonAttachmentStatus.Ser::class)
+enum class AddonAttachmentStatus {
     NORMAL,
     DELETED,
     UPLOADING,
     BANNED,
     PENDING_MODERATION;
 
-    internal object Ser : EnumIntSerializer<AttachmentStatus>("AttachmentStatus", values())
+    internal object Ser : EnumIntSerializer<AddonAttachmentStatus>("AttachmentStatus", values())
 }

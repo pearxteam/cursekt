@@ -18,5 +18,5 @@ data class AddonAttachment(
     val thumbnailUrl: String,
     val title: String,
     val url: String,
-    val status: AttachmentStatus
+    val status: AddonAttachmentStatus
 )

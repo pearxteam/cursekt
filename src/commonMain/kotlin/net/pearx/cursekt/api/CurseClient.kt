@@ -19,13 +19,20 @@ import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
-import net.pearx.cursekt.model.RepositoryMatch
 import net.pearx.cursekt.model.addon.Addon
-import net.pearx.cursekt.model.addon.AddonFile
 import net.pearx.cursekt.model.addon.AddonSortMethod
 import net.pearx.cursekt.model.addon.FeaturedAddonType
+import net.pearx.cursekt.model.addon.file.AddonFile
+import net.pearx.cursekt.model.addon.request.FeaturedAddonsRequest
+import net.pearx.cursekt.model.category.Category
+import net.pearx.cursekt.model.fingerprint.FingerprintMatchResult
+import net.pearx.cursekt.model.fingerprint.FolderFingerprint
+import net.pearx.cursekt.model.fingerprint.FuzzyFingerprintMatch
+import net.pearx.cursekt.model.fingerprint.request.FuzzyMatchesRequest
 import net.pearx.cursekt.model.game.Game
-import net.pearx.cursekt.model.request.FeaturedAddonsRequest
+import net.pearx.cursekt.model.minecraft.MinecraftVersion
+import net.pearx.cursekt.model.minecraft.modloader.ModloaderIndex
+import net.pearx.cursekt.model.minecraft.modloader.ModloaderVersion
 import net.pearx.cursekt.util.Date
 import net.pearx.cursekt.util.DateSerializer
 
@@ -41,7 +48,7 @@ class CurseClient {
         }
     }
 
-    suspend fun getGames(supportsAddons: Boolean? = null): List<Game> {
+    suspend fun getGames(supportsAddons: Boolean = false): List<Game> {
         return http.get("api/v2/game") {
             parameter("supportsAddons", supportsAddons.toString())
         }
@@ -86,18 +93,11 @@ class CurseClient {
     suspend fun getAddonFiles(vararg keys: Int): Map<Int, List<AddonFile>> = getAddonFiles(keys.toList())
 
     suspend fun getAddonFileDownloadUrl(projectId: Int, fileId: Int): String {
-        return http.get("api/v2/addon/$projectId/$fileId/download-url")
+        return http.get("api/v2/addon/$projectId/file/$fileId/download-url")
     }
 
     suspend fun getAddonFile(projectId: Int, fileId: Int): AddonFile {
         return http.get("api/v2/addon/$projectId/file/$fileId")
-    }
-
-    suspend fun getRepositoryMatchFromSlug(gameSlug: String, addonSlug: String): RepositoryMatch {
-        return http.get("api/v2/addon/slug") {
-            parameter("gameSlug", gameSlug)
-            parameter("addonSlug", addonSlug)
-        }
     }
 
     suspend fun searchAddons(
@@ -145,8 +145,79 @@ class CurseClient {
         vararg excludedAddons: Int
     ): Map<FeaturedAddonType, List<Addon>> = getFeaturedAddons(gameId, featuredCount, popularCount, updatedCount, excludedAddons.toList())
 
-//suspend fun getFingerprintMatches(fingerprints: Collection<Long>): List<Add> {
-//    Http.post<>()
-//}
+    suspend fun getCategory(categoryId: Int): Category {
+        return http.get("api/v2/category/$categoryId")
+    }
 
+    suspend fun getCategory(slug: String): List<Category> {
+        return http.get("api/v2/category") {
+            parameter("slug", slug)
+        }
+    }
+
+    suspend fun getCategorySection(sectionId: Int): List<Category> {
+        return http.get("api/v2/category/section/$sectionId")
+    }
+
+    suspend fun getCategories(): List<Category> {
+        return http.get("api/v2/category")
+    }
+
+    suspend fun getCategoryDatabaseTimestamp(): Date {
+        return Json.parse(DateSerializer, http.get("api/v2/category/timestamp"))
+    }
+
+//    suspend fun getRepositoryMatchFromSlug(gameSlug: String, addonSlug: String): AddonRepositoryMatch {
+//        return http.get("api/v2/addon/slug") {
+//            parameter("gameSlug", gameSlug)
+//            parameter("addonSlug", addonSlug)
+//        }
+//    }
+    // doesn't work currently
+
+    suspend fun getFingerprintMatches(fingerprints: Collection<Long>): FingerprintMatchResult {
+        return http.post("api/v2/fingerprint") {
+            contentType(ContentType.Application.Json)
+            body = fingerprints
+        }
+    }
+
+    suspend fun getFingerprintMatches(vararg fingerprints: Long): FingerprintMatchResult = getFingerprintMatches(fingerprints.toList())
+
+    suspend fun getFuzzyFingerprintMatches(gameId: Int, fingerprints: List<FolderFingerprint>): List<FuzzyFingerprintMatch> {
+        return http.post("api/v2/fingerprint/fuzzy") {
+            contentType(ContentType.Application.Json)
+            body = FuzzyMatchesRequest(gameId, fingerprints)
+        }
+    }
+
+    suspend fun getModloader(key: String): ModloaderVersion {
+        return http.get("api/v2/minecraft/modloader/$key")
+    }
+
+    suspend fun getModloaders(): List<ModloaderIndex> {
+        return http.get("api/v2/minecraft/modloader")
+    }
+
+    suspend fun getModloaders(gameVersion: String): List<ModloaderIndex> {
+        return http.get("api/v2/minecraft/modloader") {
+            parameter("version", gameVersion)
+        }
+    }
+
+    suspend fun getModloadersDatabaseTimestamp(): Date {
+        return Json.parse(DateSerializer, http.get("api/v2/minecraft/modloader/timestamp"))
+    }
+
+    suspend fun getMinecraftVersions(): List<MinecraftVersion> {
+        return http.get("api/v2/minecraft/version")
+    }
+
+    suspend fun getMinecraftVersion(gameVersion: String): MinecraftVersion {
+        return http.get("api/v2/minecraft/version/$gameVersion")
+    }
+
+    suspend fun getMinecraftVersionsDatabaseTimestamp(): Date {
+        return Json.parse(DateSerializer, http.get("api/v2/minecraft/version/timestamp"))
+    }
 }

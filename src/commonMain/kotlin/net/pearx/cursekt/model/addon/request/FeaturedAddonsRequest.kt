@@ -1,4 +1,4 @@
-package net.pearx.cursekt.model.request
+package net.pearx.cursekt.model.addon.request
 
 import kotlinx.serialization.Serializable
 

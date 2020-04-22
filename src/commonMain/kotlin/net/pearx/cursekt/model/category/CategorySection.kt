@@ -1,6 +1,7 @@
-package net.pearx.cursekt.model
+package net.pearx.cursekt.model.category
 
 import kotlinx.serialization.Serializable
+import net.pearx.cursekt.model.addon.AddonPackageType
 
 @Serializable
 data class CategorySection(
@@ -10,6 +11,6 @@ data class CategorySection(
     val id: Int,
     val initialInclusionPattern: String,
     val name: String,
-    val packageType: PackageType,
+    val packageType: AddonPackageType,
     val path: String
 )

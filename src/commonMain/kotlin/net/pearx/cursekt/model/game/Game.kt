@@ -1,18 +1,20 @@
 package net.pearx.cursekt.model.game
 
 import kotlinx.serialization.Serializable
-import net.pearx.cursekt.model.CategorySection
-import net.pearx.cursekt.model.SupportedClientConfiguration
+import net.pearx.cursekt.model.category.CategorySection
+import net.pearx.cursekt.util.Date
+import net.pearx.cursekt.util.DateSerializer
 
 @Serializable
 data class Game(
     val id: Int,
     val name: String,
     val slug: String,
-    val dateModified: String, // todo datetime
+    @Serializable(with = DateSerializer::class)
+    val dateModified: Date,
     val gameFiles: List<GameFile>,
     val gameDetectionHints: List<GameDetectionHint>,
-    val fileParsingRules: List<GameFileParsingRule>, // always empty, so can't say if it's a String
+    val fileParsingRules: List<GameFileParsingRule>,
     val categorySections: List<CategorySection>,
     val maxFreeStorage: Long,
     val maxPremiumStorage: Long,

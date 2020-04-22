@@ -5,15 +5,15 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.pearx.cursekt.model.addon
+package net.pearx.cursekt.model.addon.file
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GameVersionLatestFile(
+data class AddonFileLatestForGameVersion(
     val gameVersion: String,
     val projectFileId: Int,
     val projectFileName: String,
-    val fileType: ProjectFileReleaseType,
+    val fileType: AddonFileReleaseType,
     val gameVersionFlavor: String?
 )

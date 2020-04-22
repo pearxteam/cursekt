@@ -9,7 +9,9 @@ package net.pearx.cursekt.model.addon
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import net.pearx.cursekt.model.CategorySection
+import net.pearx.cursekt.model.addon.file.AddonFile
+import net.pearx.cursekt.model.addon.file.AddonFileLatestForGameVersion
+import net.pearx.cursekt.model.category.CategorySection
 import net.pearx.cursekt.util.Date
 import net.pearx.cursekt.util.DateSerializer
 
@@ -26,11 +28,11 @@ data class Addon(
     val downloadCount: Double,
     val latestFiles: List<AddonFile>,
     val categories: List<AddonCategory>,
-    val status: ProjectStatus,
+    val status: AddonStatus,
     val primaryCategoryId: Int,
     val categorySection: CategorySection,
     val slug: String,
-    val gameVersionLatestFiles: List<GameVersionLatestFile>,
+    val gameVersionLatestFiles: List<AddonFileLatestForGameVersion>,
     val isFeatured: Boolean,
     val popularityScore: Double,
     val gamePopularityRank: Int,

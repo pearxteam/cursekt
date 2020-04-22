@@ -3,8 +3,8 @@ package net.pearx.cursekt.model.addon
 import kotlinx.serialization.Serializable
 import net.pearx.cursekt.util.EnumIntSerializer
 
-@Serializable(with = ProjectStatus.Ser::class)
-enum class ProjectStatus {
+@Serializable(with = AddonStatus.Ser::class)
+enum class AddonStatus {
     NEW,
     CHANGES_REQUIRED,
     UNDER_SOFT_REVIEW,
@@ -16,5 +16,5 @@ enum class ProjectStatus {
     DELETED,
     UNDER_REVIEW;
 
-    internal object Ser : EnumIntSerializer<ProjectStatus>("ProjectStatus", values())
+    internal object Ser : EnumIntSerializer<AddonStatus>("ProjectStatus", values())
 }

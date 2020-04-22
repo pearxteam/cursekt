@@ -1,6 +1,6 @@
-package net.pearx.cursekt.model
+package net.pearx.cursekt.model.game
 
-import kotlinx.serialization.*
+import kotlinx.serialization.Serializable
 import net.pearx.cursekt.util.FlagSerializer
 import net.pearx.cursekt.util.flag
 
