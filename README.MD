@@ -28,7 +28,7 @@ Multiplatform Kotlin library containing observable data structures, such as Obse
 2. Use the library and have fun!
 
 # How to use the library
-Take a look at the [Example Application](#example-application) section. To get all the methods available in CurseKT, take a look at the [CurseClient.kt](src/commonMain/kotlin/net/pearx/cursekt/client/CurseClient.kt) file.
+You can get a brief example of how to work with the library in the [Example Application](#example-application) section. To get all the methods available in CurseKT, take a look at the [CurseClient.kt](src/commonMain/kotlin/net/pearx/cursekt/client/CurseClient.kt) file.
 
 # Example Application
 This application will search for Minecraft 1.15.2 mods matching the "just enough items" filter, sort by download count and print them.
