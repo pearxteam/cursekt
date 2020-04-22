@@ -27,5 +27,23 @@ Multiplatform Kotlin library containing observable data structures, such as Obse
 
 2. Use the library and have fun!
 
-# Examples
-TODO
+# How to use the library
+Take a look at the [Example Application](#example-application) section. To get all the methods available in CurseKT, take a look at the [CurseClient.kt](src/commonMain/kotlin/net/pearx/cursekt/client/CurseClient.kt) file.
+
+# Example Application
+This application will search for Minecraft 1.15.2 mods matching the "just enough items" filter, sort by download count and print them.
+```kotlin
+import kotlinx.coroutines.runBlocking
+import net.pearx.cursekt.client.CurseClient
+
+fun main() {
+    runBlocking {
+        val curse = CurseClient() // create a new CurseClient instance
+        val minecraftGame = curse.getGames(supportsAddons = true).first { it.slug == "minecraft" } // get Minecraft game
+        val modsSection = minecraftGame.categorySections.first { it.name == "Mods" } // get Minecraft Mods section
+        val addons = curse.searchAddons(gameId = minecraftGame.id, sectionId = modsSection.gameCategoryId, gameVersion = "1.15.2", searchFilter = "just enough items") // search for Minecraft 1.15.2 mods matching the "just enough items" filter
+        val addonsSorted = addons.sortedByDescending { it.downloadCount } // sort search results by download count
+        println(addonsSorted.joinToString(System.lineSeparator()) { "${it.name} - ${it.downloadCount.toInt()}" }) // print sorted search results
+    }
+}
+```
