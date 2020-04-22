@@ -5,7 +5,7 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.pearx.cursekt.api
+package net.pearx.cursekt.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.features.defaultRequest
