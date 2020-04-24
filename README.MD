@@ -4,10 +4,10 @@
 [![Release Build Status](https://img.shields.io/jenkins/build/https/ci.pearx.net/job/pearxteam/job/cursekt/job/master.svg?label=build%20%5Bmaster%5D&logo=jenkins&logoColor=white)](https://ci.pearx.net/job/pearxteam/job/cursekt/job/master/)
 [![Develop Build Status](https://img.shields.io/jenkins/build/https/ci.pearx.net/job/pearxteam/job/cursekt/job/develop.svg?label=build%20%5Bdevelop%5D&logo=jenkins&logoColor=white)](https://ci.pearx.net/job/pearxteam/job/cursekt/job/develop/)
 
-Multiplatform Kotlin library containing observable data structures, such as ObservableList, ObservableSet and ObservableMap.
+Multiplatform Kotlin library to work with the Curse (CurseForge) API using Ktor.
 
 # Setup
-1. Add the lib to your project's dependencies by copying one of the following lines depending on the platform: 
+1. Add the lib to your project's dependencies by copying one of the following lines depending on the platform:
 - Groovy (replace `$cursekt_version` with the version you want):
 ```groovy
  implementation "net.pearx.cursekt:cursekt-metadata:$cursekt_version" // for Common
@@ -25,7 +25,14 @@ Multiplatform Kotlin library containing observable data structures, such as Obse
  implementation("net.pearx.cursekt:cursekt-js:$cursektVersion") // for JS
 ```
 
-2. Use the library and have fun!
+2. Don't forget to declare the JCenter Maven repository to your build script (required by Ktor):
+```kotlin
+repositories {
+    jcenter()
+}
+```
+
+3. Use the library and have fun!
 
 # How to Use the Library
 You can get a brief example of how to work with the library at the [Example Application](#example-application) section. To get all the methods available in CurseKT, take a look at the [CurseClient.kt](src/commonMain/kotlin/net/pearx/cursekt/client/CurseClient.kt) file.
