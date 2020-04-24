@@ -4,11 +4,11 @@
 [![Release Build Status](https://img.shields.io/jenkins/build/https/ci.pearx.net/job/pearxteam/job/cursekt/job/master.svg?label=build%20%5Bmaster%5D&logo=jenkins&logoColor=white)](https://ci.pearx.net/job/pearxteam/job/cursekt/job/master/)
 [![Develop Build Status](https://img.shields.io/jenkins/build/https/ci.pearx.net/job/pearxteam/job/cursekt/job/develop.svg?label=build%20%5Bdevelop%5D&logo=jenkins&logoColor=white)](https://ci.pearx.net/job/pearxteam/job/cursekt/job/develop/)
 
-Multiplatform Kotlin library to work with the Curse (CurseForge) API using Ktor.
+Multiplatform **Kotlin** library to work with the **Curse (CurseForge) API** using **Ktor**.
 
 # Setup
 1. Add the lib to your project's dependencies by copying one of the following lines depending on the platform:
-- Groovy (replace `$cursekt_version` with the version you want):
+- **Groovy** (replace `$cursekt_version` with the version you want):
 ```groovy
  implementation "net.pearx.cursekt:cursekt-metadata:$cursekt_version" // for Common
  // or
@@ -16,7 +16,7 @@ Multiplatform Kotlin library to work with the Curse (CurseForge) API using Ktor.
  // or
  implementation "net.pearx.cursekt:cursekt-js:$cursekt_version" // for JS
 ```
-- Kotlin (replace `$cursektVersion` with the version you want):
+- **Kotlin** (replace `$cursektVersion` with the version you want):
 ```kotlin
  implementation("net.pearx.cursekt:cursekt-metadata:$cursektVersion") // for Common
  // or
@@ -25,9 +25,9 @@ Multiplatform Kotlin library to work with the Curse (CurseForge) API using Ktor.
  implementation("net.pearx.cursekt:cursekt-js:$cursektVersion") // for JS
 ```
 
-2. CurseKT uses coroutines! Ensure you've added kotlinx.coroutines as a dependency: https://github.com/Kotlin/kotlinx.coroutines#using-in-your-projects.
+2. CurseKT uses coroutines! Ensure you've added **kotlinx.coroutines** as a dependency: https://github.com/Kotlin/kotlinx.coroutines#using-in-your-projects.
 
-3. Don't forget to declare the JCenter Maven repository to your build script (required by Ktor):
+3. Don't forget to declare the **JCenter** Maven repository to your build script (required by Ktor):
 ```kotlin
 repositories {
     jcenter()
