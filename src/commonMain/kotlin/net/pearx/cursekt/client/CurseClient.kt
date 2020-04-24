@@ -166,7 +166,7 @@ class CurseClient {
     }
 
     suspend fun getCategoryDatabaseTimestamp(): Date {
-        return Json.parse(DateSerializer, http.get("api/v2/category/timestamp"))
+        return json.parse(DateSerializer, http.get("api/v2/category/timestamp"))
     }
 
 //    suspend fun getRepositoryMatchFromSlug(gameSlug: String, addonSlug: String): AddonRepositoryMatch {
