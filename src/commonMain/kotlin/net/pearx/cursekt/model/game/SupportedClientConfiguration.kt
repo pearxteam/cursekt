@@ -7,8 +7,8 @@
 
 package net.pearx.cursekt.model.game
 
-import net.pearx.cursekt.util.FlagSerializer
-import net.pearx.cursekt.util.MODEL_PACKAGE
+import net.pearx.cursekt.util.internal.FlagSerializer
+import net.pearx.cursekt.util.internal.MODEL_PACKAGE
 
 enum class SupportedClientConfiguration {
     DEBUG,

@@ -35,7 +35,7 @@ import net.pearx.cursekt.model.minecraft.MinecraftVersion
 import net.pearx.cursekt.model.minecraft.modloader.ModloaderIndex
 import net.pearx.cursekt.model.minecraft.modloader.ModloaderVersion
 import net.pearx.cursekt.util.Date
-import net.pearx.cursekt.util.DateSerializer
+import net.pearx.cursekt.util.internal.DateSerializer
 
 class CurseClient {
     private val json = Json(JsonConfiguration.Stable)
@@ -168,14 +168,6 @@ class CurseClient {
     suspend fun getCategoryDatabaseTimestamp(): Date {
         return json.parse(DateSerializer, http.get("api/v2/category/timestamp"))
     }
-
-//    suspend fun getRepositoryMatchFromSlug(gameSlug: String, addonSlug: String): AddonRepositoryMatch {
-//        return http.get("api/v2/addon/slug") {
-//            parameter("gameSlug", gameSlug)
-//            parameter("addonSlug", addonSlug)
-//        }
-//    }
-    // doesn't work currently
 
     suspend fun getFingerprintMatches(fingerprints: Collection<Long>): FingerprintMatchResult {
         return http.post("api/v2/fingerprint") {

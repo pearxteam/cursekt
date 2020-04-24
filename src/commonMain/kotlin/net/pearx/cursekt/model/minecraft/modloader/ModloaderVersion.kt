@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 import net.pearx.cursekt.model.minecraft.MinecraftVersionStatus
 import net.pearx.cursekt.model.minecraft.MinecraftVersionTypeStatus
 import net.pearx.cursekt.util.Date
-import net.pearx.cursekt.util.DateSerializer
+import net.pearx.cursekt.util.internal.DateSerializer
 
 @Serializable
 data class ModloaderVersion(

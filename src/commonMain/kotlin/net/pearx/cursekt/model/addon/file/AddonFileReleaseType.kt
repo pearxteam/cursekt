@@ -8,8 +8,8 @@
 package net.pearx.cursekt.model.addon.file
 
 import kotlinx.serialization.Serializable
-import net.pearx.cursekt.util.EnumIntSerializer
-import net.pearx.cursekt.util.MODEL_PACKAGE
+import net.pearx.cursekt.util.internal.EnumIntSerializer
+import net.pearx.cursekt.util.internal.MODEL_PACKAGE
 
 @Serializable(with = AddonFileReleaseType.Ser::class)
 enum class AddonFileReleaseType {

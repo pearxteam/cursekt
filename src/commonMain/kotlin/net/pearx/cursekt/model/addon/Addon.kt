@@ -13,7 +13,7 @@ import net.pearx.cursekt.model.addon.file.AddonFile
 import net.pearx.cursekt.model.addon.file.AddonFileLatestForGameVersion
 import net.pearx.cursekt.model.category.CategorySection
 import net.pearx.cursekt.util.Date
-import net.pearx.cursekt.util.DateSerializer
+import net.pearx.cursekt.util.internal.DateSerializer
 
 @Serializable
 data class Addon(

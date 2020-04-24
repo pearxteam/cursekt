@@ -5,9 +5,12 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.pearx.cursekt.util
+package net.pearx.cursekt.util.internal
 
 import kotlinx.serialization.*
+import net.pearx.cursekt.util.Date
+import net.pearx.cursekt.util.deserializeDate
+import net.pearx.cursekt.util.serializeDate
 
 internal object DateSerializer : KSerializer<Date> {
     override val descriptor = PrimitiveDescriptor("Date", PrimitiveKind.STRING)

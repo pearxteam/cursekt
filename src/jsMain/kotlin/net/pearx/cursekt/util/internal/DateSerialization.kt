@@ -5,6 +5,10 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.pearx.cursekt.util
+package net.pearx.cursekt.util.internal
 
-expect class Date
+import net.pearx.cursekt.util.Date
+
+internal actual fun String.deserializeDate(): Date = Date(this)
+
+internal actual fun Date.serializeDate(): String = toISOString()

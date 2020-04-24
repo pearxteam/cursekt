@@ -13,7 +13,7 @@ import net.pearx.cursekt.model.addon.AddonRestrictFileAccess
 import net.pearx.cursekt.model.addon.AddonStatus
 import net.pearx.cursekt.model.addon.SortableGameVersion
 import net.pearx.cursekt.util.Date
-import net.pearx.cursekt.util.DateSerializer
+import net.pearx.cursekt.util.internal.DateSerializer
 
 @Serializable
 data class AddonFile(

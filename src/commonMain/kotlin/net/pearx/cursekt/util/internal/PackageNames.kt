@@ -5,6 +5,6 @@
  * You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package net.pearx.cursekt.util
+package net.pearx.cursekt.util.internal
 
 internal const val MODEL_PACKAGE = "net.pearx.cursekt.model"
