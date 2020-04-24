@@ -25,14 +25,16 @@ Multiplatform Kotlin library to work with the Curse (CurseForge) API using Ktor.
  implementation("net.pearx.cursekt:cursekt-js:$cursektVersion") // for JS
 ```
 
-2. Don't forget to declare the JCenter Maven repository to your build script (required by Ktor):
+2. CurseKT uses coroutines! Ensure you've added kotlinx.coroutines as a dependency: https://github.com/Kotlin/kotlinx.coroutines#using-in-your-projects.
+
+3. Don't forget to declare the JCenter Maven repository to your build script (required by Ktor):
 ```kotlin
 repositories {
     jcenter()
 }
 ```
 
-3. Use the library and have fun!
+4. Use the library and have fun!
 
 # How to Use the Library
 You can get a brief example of how to work with the library at the [Example Application](#example-application) section. To get all the methods available in CurseKT, take a look at the [CurseClient.kt](src/commonMain/kotlin/net/pearx/cursekt/client/CurseClient.kt) file.
