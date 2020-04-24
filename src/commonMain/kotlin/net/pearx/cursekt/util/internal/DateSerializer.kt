@@ -9,8 +9,8 @@ package net.pearx.cursekt.util.internal
 
 import kotlinx.serialization.*
 import net.pearx.cursekt.util.Date
-import net.pearx.cursekt.util.deserializeDate
-import net.pearx.cursekt.util.serializeDate
+import net.pearx.cursekt.util.internal.deserializeDate
+import net.pearx.cursekt.util.internal.serializeDate
 
 internal object DateSerializer : KSerializer<Date> {
     override val descriptor = PrimitiveDescriptor("Date", PrimitiveKind.STRING)
