@@ -19,6 +19,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 import net.pearx.cursekt.model.addon.Addon
 import net.pearx.cursekt.model.addon.AddonSortMethod
 import net.pearx.cursekt.model.addon.FeaturedAddonType
@@ -37,9 +38,10 @@ import net.pearx.cursekt.util.Date
 import net.pearx.cursekt.util.DateSerializer
 
 class CurseClient {
+    private val json = Json(JsonConfiguration.Stable)
     private val http = HttpClient {
         install(JsonFeature) {
-            serializer = KotlinxSerializer()
+            serializer = KotlinxSerializer(json)
         }
         defaultRequest {
             url.protocol = URLProtocol.HTTPS
@@ -59,7 +61,7 @@ class CurseClient {
     }
 
     suspend fun getGameDatabaseTimestamp(): Date {
-        return Json.parse(DateSerializer, http.get("api/v2/game/timestamp"))
+        return json.parse(DateSerializer, http.get("api/v2/game/timestamp"))
     }
 
     suspend fun getAddon(projectId: Int): Addon {
@@ -206,7 +208,7 @@ class CurseClient {
     }
 
     suspend fun getModloadersDatabaseTimestamp(): Date {
-        return Json.parse(DateSerializer, http.get("api/v2/minecraft/modloader/timestamp"))
+        return json.parse(DateSerializer, http.get("api/v2/minecraft/modloader/timestamp"))
     }
 
     suspend fun getMinecraftVersions(): List<MinecraftVersion> {
@@ -218,6 +220,6 @@ class CurseClient {
     }
 
     suspend fun getMinecraftVersionsDatabaseTimestamp(): Date {
-        return Json.parse(DateSerializer, http.get("api/v2/minecraft/version/timestamp"))
+        return json.parse(DateSerializer, http.get("api/v2/minecraft/version/timestamp"))
     }
 }

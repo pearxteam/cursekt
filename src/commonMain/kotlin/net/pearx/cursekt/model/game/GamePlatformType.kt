@@ -1,7 +1,8 @@
 package net.pearx.cursekt.model.game
 
-import kotlinx.serialization.*
+import kotlinx.serialization.Serializable
 import net.pearx.cursekt.util.EnumIntSerializer
+import net.pearx.cursekt.util.MODEL_PACKAGE
 
 @Serializable(with = GamePlatformType.Ser::class)
 enum class GamePlatformType {
@@ -11,5 +12,5 @@ enum class GamePlatformType {
     WINDOWS,
     OSX;
 
-    internal object Ser : EnumIntSerializer<GamePlatformType>("GamePlatformType", values())
+    internal object Ser : EnumIntSerializer<GamePlatformType>("$MODEL_PACKAGE.game.GamePlatformType", values())
 }

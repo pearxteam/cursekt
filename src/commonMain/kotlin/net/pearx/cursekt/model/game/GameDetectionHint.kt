@@ -8,6 +8,7 @@ data class GameDetectionHint(
     val hintType: GameDetectionHintType,
     val hintPath: String,
     val hintKey: String?,
-    val hintOptions: GameDetectionHintOptions,
+    @Serializable(with = GameDetectionHintOption.Ser::class)
+    val hintOptions: Set<GameDetectionHintOption>,
     val gameId: Int
 )

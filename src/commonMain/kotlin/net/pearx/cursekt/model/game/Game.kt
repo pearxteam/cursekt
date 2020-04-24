@@ -25,7 +25,8 @@ data class Game(
     val addonSettingsFileRemovalFilter: String?,
     val supportsAddons: Boolean,
     val supportsPartnerAddons: Boolean,
-    val supportedClientConfiguration: SupportedClientConfiguration,
+    @Serializable(with = SupportedClientConfiguration.Ser::class)
+    val supportedClientConfiguration: Set<SupportedClientConfiguration>,
     val supportsNotifications: Boolean,
     val profilerAddonId: Int,
     val twitchGameId: Int,

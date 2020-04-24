@@ -2,7 +2,6 @@ package net.pearx.cursekt.util
 
 import kotlinx.serialization.*
 
-@Serializer(forClass = Date::class)
 internal object DateSerializer : KSerializer<Date> {
     override val descriptor = PrimitiveDescriptor("Date", PrimitiveKind.STRING)
 

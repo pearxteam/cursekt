@@ -2,23 +2,26 @@ package net.pearx.cursekt.util
 
 import kotlinx.serialization.*
 
-internal fun flag(value: Boolean, flag: Int) = 0.flag(value, flag)
+internal open class FlagSerializer<T : Enum<T>>(serialName: String, private val map: Map<T, Int>) : KSerializer<Set<T>> {
+    constructor(serialName: String, vararg pairs: Pair<T, Int>) : this(serialName, mapOf(*pairs))
 
-internal fun Int.flag(value: Boolean, flag: Int): Int = if (value) this or flag else this
-
-internal fun Int.flag(shift: Int): Boolean = this and shift == shift
-
-internal abstract class FlagSerializer<T>(serialName: String) : KSerializer<T> {
     override val descriptor: SerialDescriptor = PrimitiveDescriptor(serialName, PrimitiveKind.INT)
 
-    protected abstract fun T.toFlags(): Int
-    protected abstract fun Int.fromFlags(): T
-
-    override fun serialize(encoder: Encoder, value: T) {
-        encoder.encodeInt(value.toFlags())
+    override fun serialize(encoder: Encoder, value: Set<T>) {
+        var bits = 0
+        for(flag in value) {
+            bits = bits or (map[flag] ?: error(""))
+        }
+        encoder.encodeInt(bits)
     }
 
-    override fun deserialize(decoder: Decoder): T {
-        return decoder.decodeInt().fromFlags()
+    override fun deserialize(decoder: Decoder): Set<T> {
+        val set = mutableSetOf<T>()
+        val bits = decoder.decodeInt()
+        for((flag, shift) in map) {
+            if(bits and shift == shift)
+                set += flag
+        }
+        return set
     }
 }

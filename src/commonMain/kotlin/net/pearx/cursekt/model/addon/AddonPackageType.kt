@@ -2,6 +2,7 @@ package net.pearx.cursekt.model.addon
 
 import kotlinx.serialization.Serializable
 import net.pearx.cursekt.util.EnumIntSerializer
+import net.pearx.cursekt.util.MODEL_PACKAGE
 
 @Serializable(with = AddonPackageType.Ser::class)
 enum class AddonPackageType {
@@ -12,5 +13,5 @@ enum class AddonPackageType {
     MOD_PACK,
     MOD;
 
-    internal object Ser : EnumIntSerializer<AddonPackageType>("GamePackageType", values())
+    internal object Ser : EnumIntSerializer<AddonPackageType>("$MODEL_PACKAGE.addon.AddonPackageType", values())
 }

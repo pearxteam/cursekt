@@ -2,6 +2,7 @@ package net.pearx.cursekt.model.addon
 
 import kotlinx.serialization.Serializable
 import net.pearx.cursekt.util.EnumIntSerializer
+import net.pearx.cursekt.util.MODEL_PACKAGE
 
 @Serializable(with = AddonStatus.Ser::class)
 enum class AddonStatus {
@@ -16,5 +17,5 @@ enum class AddonStatus {
     DELETED,
     UNDER_REVIEW;
 
-    internal object Ser : EnumIntSerializer<AddonStatus>("ProjectStatus", values())
+    internal object Ser : EnumIntSerializer<AddonStatus>("$MODEL_PACKAGE.addon.AddonStatus", values())
 }
